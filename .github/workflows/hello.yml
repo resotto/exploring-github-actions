@@ -45,3 +45,11 @@ jobs:
 #    steps:
 #      - run: node -e 'console.log("Hello World 
 
+  job6:
+    name: Env
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          NAME: M
+        run: echo "Hello ${M}"
+
