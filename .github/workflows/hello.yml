@@ -1,0 +1,47 @@
+name: Hello, World!
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "!*"
+
+jobs:
+  # jobs will be executed in the following order
+  # job1 -> [job2, job3] -> job4 -> job5
+  job1:
+    name: Greeting 1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World 1"
+
+  job2:
+    name: Greeting 2
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World 2"
+
+  job3:
+    name: Greeting 3
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World 3"
+
+  job4:
+    name: Greeting 4
+    needs: [job2, job3]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World 4"
+
+#  job5:
+#    name: Greeting fron node
+#    needs: job4
+#    runs-on: ubuntu-latest
+#    container:
+#      image: node
+#    steps:
+#      - run: node -e 'console.log("Hello World 
+
